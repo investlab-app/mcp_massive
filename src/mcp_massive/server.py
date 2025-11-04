@@ -26,7 +26,9 @@ except PackageNotFoundError:
 massive_client = RESTClient(MASSIVE_API_KEY)
 massive_client.headers["User-Agent"] += f" {version_number}"
 
-poly_mcp = FastMCP("Massive")
+MASSIVE_MCP_HOST = os.environ.get("MASSIVE_MCP_HOST", "127.0.0.1")
+
+poly_mcp = FastMCP("Massive", host=MASSIVE_MCP_HOST)
 
 
 @poly_mcp.tool(annotations=ToolAnnotations(readOnlyHint=True))
